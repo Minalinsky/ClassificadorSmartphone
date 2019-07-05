@@ -23,241 +23,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FileManager {
-	private static final String[] brands = {
-			"Acer",
-			"Aermoo",
-			"AGM",
-			"Akai",
-			"Alcatel",
-			"AllCall",
-			"Allview",
-			"Amazon",
-			"Amigoo",
-			"Apple",
-			"Archos",
-			"Argos",
-			"Ark",
-			"Assistant",
-			"Asus",
-			"Avvio",
-			"BeeX",
-			"BenQ",
-			"Black Fox",
-			"BlackBerry",
-			"Blackview",
-			"Blaupunkt",
-			"BLU",
-			"Bluboo",
-			"BQ",
-			"BQ Mobile",
-			"Bravis",
-			"Cagabi",
-			"Casper",
-			"CAT",
-			"Celkon", 
-			"Centric",
-			"Cherry Mobile",
-			"Colorovo",
-			"Comio",
-			"ConCorde",
-			"Conquest",
-			"Coolpad",
-			"Crosscall",
-			"Cubot",
-			"Daj",
-			"DEXP",
-			"Digma",
-			"Doogee",
-			"Doopro",
-			"Doov",
-			"Echo",
-			"Ecoo ",
-			"Elephone",
-			"Energizer",
-			"Essential",
-			"Evolveo",
-			"Explay",
-			"FairPhone",
-			"FinePower",
-			"Fly",
-			"Flycat",
-			"Freetel",
-			"Fujitsu",
-			"Geecoo",
-			"Geotel",
-			"Gigabyte",
-			"Gigaset",
-			"Ginzzu",
-			"Gionee",
-			"Gome",
-			"Google",
-			"Gooweel",
-			"Gretel",
-			"Haier",
-			"Happymobile",
-			"Haus",
-			"Helio",
-			"Highscreen",
-			"Hisense",
-			"HomTom",
-			"Hotwav",
-			"HTC",
-			"Huawei",
-			"Hyve",
-			"Icemobile",
-			"iLA",
-			"iMan",
-			"Impression",
-			"iNew",
-			"Infinix",
-			"InFocus",
-			"InnJoo",
-			"iNO Mobile",
-			"Inoi",
-			"Intex",
-			"Ioutdoor",
-			"IQM",
-			"Irbis",
-			"Itel",
-			"Ivoomi",
-			"Jeasung",
-			"Jesy",
-			"JiaYu",
-			"Jinga",
-			"Just5",
-			"JVC",
-			"Karbonn",
-			"Kazam",
-			"Keneksi",
-			"Kenxinda",
-			"KingZone",
-			"Kodak",
-			"Kogan",
-			"Konka",
-			"Koobee",
-			"Koolnee",
-			"Kult",
-			"Kyocera",
-			"Land Rover",
-			"Landvo",
-			"Lanix",
-			"Lava",
-			"Leagoo",
-			"LeEco",
-			"Lenovo",
-			"LeRee",
-			"LeTV",
-			"LG",
-			"Lumigon",
-			"Lyf",
-			"M-Horse",
-			"Maxvi",
-			"Maxwest",
-			"Maze",
-			"Meiigoo",
-			"Meitu",
-			"Meizu ",
-			"Micromax",
-			"Microsoft",
-			"Mlais",
-			"Mobiistar",
-			"Motorola",
-			"MPIE",
-			"Multilaser",
-			"myPhone",
-			"MyWigo",
-			"Neffos",
-			"Nexian",
-			"Nextbit",
-			"Noa",
-			"Nobby",
-			"Nokia",
-			"Nomi",
-			"Nomu",
-			"NUU Mobile",
-			"OKWU",
-			"OnePlus",
-			"Onkyo",
-			"Oppo",
-			"Oukitel",
-			"Palm",
-			"Panasonic",
-			"Phicomm",
-			"Philips",
-			"Phonemax",
-			"Pixelphone",
-			"Pixus",
-			"Plum",
-			"Pluzz",
-			"Polaroid",
-			"Poptel",
-			"Posh",
-			"PPTV",
-			"Prestigio",
-			"Qiku",
-			"QMobile",
-			"Razer",
-			"Red",
-			"RugGear",
-			"Runbo",
-			"Samsung",
-			"Senseit",
-			"Sharp",
-			"Sigma",
-			"Siswoo",
-			"Smartisan",
-			"Snopow",
-			"Sonim",
-			"Sony",
-			"Spice",
-			"Starmobile",
-			"Sugar",
-			"SuperD",
-			"Swipe",
-			"Symphony",
-			"TCL",
-			"Tecno",
-			"teXet",
-			"THL",
-			"Timmy",
-			"Uhans",
-			"Uhappy",
-			"Ukozi",
-			"Ulefone",
-			"UMi",
-			"UMiDIGI",
-			"Vargo",
-			"Vernee",
-			"Vertex",
-			"Vertu",
-			"Verykool", 
-			"Vestel",
-			"Videocon", 
-			"Vivo",
-			"Vkworld",
-			"Vodafone",
-			"Walton",
-			"Weimei",
-			"Wieppo",
-			"Wigor",
-			"Wiko ",
-			"Wileyfox", 
-			"Wolder",
-			"Xgody",
-			"Xiaolajiao", 
-			"Xiaomi",
-			"Xolo",
-			"Xtouch",
-			"Yandex",
-			"Yezz",
-			"Yota", 
-			"YU",
-			"Zen",
-			"Zoji",
-			"Zopo",
-			"ZTE",
-			"ZUK"};
-	
+	private static String[] brands = FileManager.readFileIntoLines(FileManager.BRANDS_DB).toArray(new String[] {});
 	private static final String token = "0cd1d2134743a100b50c2c69153c5757dca4a2a963ab7a64";
 	private static FonoApiService fono = new FonoApiFactory().create();
 	private static int i = 0;
@@ -265,21 +31,29 @@ public class FileManager {
 	public static final String OUTPUT_PATH = "files/output.tsv";
 	public static final String INPUT_PATH = "files/data_estag_ds.tsv";
 	public static final String PHONES_DB = "files/phonesdb.tsv";
+	public static final String BRANDS_DB = "files/brands.tsv";
 	
 	
 	//lê o arquivo e coloca cada linha no Array fileLines
-	public static List<String> readFileIntoLines(String path) throws IOException {
-			BufferedReader buffRead = new BufferedReader(new InputStreamReader(new FileInputStream(path), "UTF-8"));
-			List<String> linesList = new ArrayList<String>();
-			String line;
-			line = buffRead.readLine();
-			
-			while(line != null) {
-				linesList.add(line);
+	public static List<String> readFileIntoLines(String path) {
+			try{
+				BufferedReader buffRead = new BufferedReader(new InputStreamReader(new FileInputStream(path), "UTF-8"));
+
+				List<String> linesList = new ArrayList<String>();
+				String line;
 				line = buffRead.readLine();
+
+				while(line != null) {
+					linesList.add(line);
+					line = buffRead.readLine();
+				}
+				buffRead.close();
+				return linesList;
 			}
-			buffRead.close();
-			return linesList;
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+			return null;
 		}
 	
 	public void appendLinesIntoFile(List<String> lines,String path) throws IOException {
@@ -329,6 +103,10 @@ public class FileManager {
 			}
 			out.close();
 		}else {System.out.println("Arquivo phonesdb.tsv já existe");}
+	}
+
+	public static String[] getBrands() {
+		return brands;
 	}
 }
 
