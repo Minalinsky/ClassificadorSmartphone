@@ -1,6 +1,6 @@
 ## Classificador de anúncios de e-commerce
 ##### Alyson Matheus Maruyama Nascimento
-Classificador de títulos de ofertas de e-commerces para diferenciar entre **smartphone / não-smartphone** para o conjunto de títulos de anúncios encontrados no arquivo `data_estag_ds.tsv` em /files
+Classificador de títulos de ofertas de e-commerces para diferenciar entre **smartphone / não-smartphone** para o conjunto de títulos de anúncios encontrado no arquivo `data_estag_ds.tsv` em /files
  - Linguagem: JAVA
  - Foi utilizada a FonoAPI para recuperar informações e nomes de diversos smartphones do mercado. A API consiste em um banco de dados no qual é possível fazer consultas à modelos de smartphones dado o nome do modelo ou da marca fabricante. Link da API: https://fonoapi.freshpixl.com/
  - Todos os arquivos estão em formato `.tsv` e encontram-se na pasta /files do projeto
