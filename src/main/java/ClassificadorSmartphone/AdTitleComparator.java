@@ -289,8 +289,7 @@ public class AdTitleComparator {
 	
 	//retorna true somente se o parâmetro "title" possui alguma palavra idêntica a outra em "items"
 	public boolean strContainsItemFromList(String title, List<String> items) {
-		String[] titleWords = title.split(" ");
-		
+		String[] titleWords = title.split(" |\t|,|-");
 		i = 0;
 		while(i < titleWords.length) {
 			if(items.stream().anyMatch(item -> titleWords[i].toLowerCase().equals(item.toLowerCase()))) {

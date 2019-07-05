@@ -284,19 +284,19 @@ public class Classificador {
 			for(String p : phonesWithoutBrand) {
 				search.addAll(Arrays.asList(p.split(" ")));
 			}
-			//removendo itens repetidos (ex: remoção da palavra "Galaxy" -> Galaxy S6, Galaxy S7, Galaxy S8)
-			search = comp.removeDuplicates(search); 
 			//removendo letras únicas (ex: E, I, X)
 			search = search.stream().filter(mod -> mod.length() >= 2).collect(Collectors.toList());
-
+			
 			/*adicionando as empresas à lista para comparação
 			 * para também considerarmos seus nomes na pesquisa
 			 */
 			search.addAll(Arrays.asList(brands));
+			
+			//removendo itens repetidos (ex: remoção da palavra "Galaxy" -> Galaxy S6, Galaxy S7, Galaxy S8)
+			search = comp.removeDuplicates(search); 
 
 			//Pegando títulos que contém ao menos um dos modelos de celular ou então o nome de uma empresa de smartphone
 			List<String> filteredList = comp.adsContainingTerms(adTitles, search);
-			filteredList = comp.filterTitlesByBrand(filteredList);
 			
 			//pegando os ids dos anuncios selecionados
 			List<String> filteredListIDs = comp.splitIDs(filteredList);
@@ -307,6 +307,8 @@ public class Classificador {
 				finalResult.add(s);
 			}
 			
+			System.out.println("FILTRADOS: " + filteredList.size());
+			//escrevendo arquivo final
 			fileManager.writeLinesIntoFile(finalResult, FileManager.OUTPUT_PATH);
 		}
 	}

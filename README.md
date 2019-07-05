@@ -4,6 +4,8 @@ Classificador de títulos de ofertas de e-commerces para diferenciar entre **sma
  - Linguagem: JAVA
  - Foi utilizada a FonoAPI para recuperar informações e nomes de diversos smartphones do mercado. A API consiste em um banco de dados no qual é possível fazer consultas à modelos de smartphones dado o nome do modelo ou da marca fabricante. Link da API: https://fonoapi.freshpixl.com/
  - Todos os arquivos estão em formato `.tsv` e encontram-se na pasta /files do projeto
+ 
+ #### Abordagem escolhida
  - São classificados como **smartphone** todos os anúncios que vendem produtos **relacionados** à smartphones (por exemplo, acessórios ou capas), e não apenas os anúncios que vendem o celular em si.
 
 #### Arquivos
