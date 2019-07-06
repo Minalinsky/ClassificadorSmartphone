@@ -89,7 +89,12 @@ public class AdTitleComparator {
 		}
 		return auxList;
 	}
-	
+	public List<String> removeTermFromList(List<String> original, String[] termsToRmv){
+		for(String term : termsToRmv) {
+			original.remove(term);
+		}
+		return original;
+	}
 	//recebe uma lista de anúncios e retorna todos os anúncios que contém alguma palavra de "terms"
  	public List<String> adsContainingTerms(List<String> adTitles, List<String> terms){
 		List<String> containingModels = new ArrayList<String>();

@@ -20,7 +20,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Classificador {
-	
 	private static FileManager fileManager = new FileManager();
 	private static int i = 0;
 	
@@ -41,14 +40,14 @@ public class Classificador {
 			//Lista com Marcas e modelos de celulares
 			List<String> phones = fileManager.readFileIntoLines(FileManager.PHONES_DB);
 
-			//Lista de modelos Sem a Marca
-			List<String> phonesWithoutBrand = comp.removeFirstWord(phones);
+			//Removendo a Marca
+			phones = comp.removeFirstWord(phones);
 
 			//criando lista com os nomes dos modelos de celulares separados para comparacao
 			List<String> search = new ArrayList<String>();
 
-			//filtrando Lista para montar um array com todos os modelos de telefones
-			for(String p : phonesWithoutBrand) {
+			//filtrando lista para montar um array com todos os modelos de telefones
+			for(String p : phones) {
 				search.addAll(Arrays.asList(p.split(" ")));
 			}
 			//removendo letras únicas (ex: E, I, X)
@@ -60,8 +59,7 @@ public class Classificador {
 			search.addAll(Arrays.asList(fileManager.getBrands()));
 			
 			//removendo itens repetidos (ex: remoção da palavra "Galaxy" -> Galaxy S6, Galaxy S7, Galaxy S8)
-			search = comp.removeDuplicates(search); 
-			System.out.println(search);
+			search = comp.removeDuplicates(search);
 
 			//Pegando títulos que contém ao menos um dos modelos de celular ou então o nome de uma empresa de smartphone
 			List<String> filteredList = comp.adsContainingTerms(adTitles, search);
@@ -77,7 +75,7 @@ public class Classificador {
 			
 			System.out.println("FILTRADOS: " + filteredList.size());
 			//escrevendo arquivo final
-			//fileManager.writeLinesIntoFile(finalResult, FileManager.OUTPUT_PATH);
+			fileManager.writeLinesIntoFile(finalResult, FileManager.OUTPUT_PATH);
 		}
 	}
 	
