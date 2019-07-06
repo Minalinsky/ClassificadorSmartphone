@@ -6,7 +6,7 @@ Classificador de títulos de ofertas de e-commerces para diferenciar entre **sma
  - Todos os arquivos estão em formato `.tsv` e encontram-se na pasta /files do projeto
  
  #### Abordagem escolhida
- - São classificados como **smartphone** todos os anúncios que vendem produtos **relacionados** à smartphones (por exemplo, acessórios ou capas), e não apenas os anúncios que vendem o celular em si.
+ - São classificados como **smartphone** todos os anúncios que vendem produtos **relacionados** à smartphones (por exemplo, acessórios ou capas).
 
 #### Arquivos
  - `data_estag_ds.tsv` arquivo de entrada contendo os títulos dos anúncios
