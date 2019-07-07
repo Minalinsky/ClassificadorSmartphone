@@ -6,28 +6,28 @@ Classificador de títulos de ofertas de e-commerces para diferenciar entre **sma
  - Todos os arquivos estão em formato `.tsv` e encontram-se na pasta /files do projeto
  
  #### Abordagem escolhida
- - São classificados como **smartphone** todos os anúncios que vendem produtos **relacionados** à smartphones (por exemplo, acessórios ou capas).
+ - Como na descrição do problema não são especificados os critérios para a classificação, são classificados como **smartphone** os anúncios que vendem produtos **relacionados** à smartphones (por exemplo, acessórios ou capas), assim como os próprios aparelhos.
 
 #### Arquivos
  - `data_estag_ds.tsv` arquivo de entrada contendo os títulos dos anúncios
  - `phonesdb.tsv` dados recuperados através da API com nomes de fabricantes e modelos de celulares 
- - `output.tsv` arquivo final com os dados filtrados
+ - `output.tsv` arquivo final com os dados preditos
 
 ### Classes
 ##### Classificador.java
  - Executa o código (main) e acessa a FonoAPI para criar o arquivo phonesdb.tsv com a lista de modelos de telefones.
- - O método createPhonesDB() foi o utilizado para a requisição dos dados da FonoAPI;
+ - O método createPhonesDB() foi o utilizado para a requisição dos dados da FonoAPI.
  
 ##### AdTitleComparator.java
- - Possui as funções de comparação e manipulação de dados de entrada e saída.
+ - Possui as funções de comparação e manipulação dos dados de entrada e saída.
  
 ##### FileManager.java
  - Possui as funções para escrita e leitura dos arquivos em disco.
  
 ### Fluxo do Programa
 1. São lidos os dados de entrada de `data_estag_ds.tsv`
-2. São lidos os dados de `phonesdb.tsv` que serão utilizados para auxiliar na classificação (caso o arquivo `phonesdb.tsv` não exista no diretório, o programa requisita os dados através da FonoAPI e cria o arquivo)
-3. Os dados de `phonesdb.tsv` são tratados para remover os nomes das empresas e deixar somente o nome de modelos de smartphones (sem itens duplicados)
+2. São lidos os dados de `phonesdb.tsv` que serão utilizados para auxiliar na classificação (caso o arquivo `phonesdb.tsv` não exista no diretório, o programa requisita os dados através da FonoAPI e cria o arquivo).
+3. Os dados de `phonesdb.tsv` são tratados para remover os nomes das empresas e deixar somente o nome de modelos de smartphones (sem itens duplicados).
 4. Com os modelos de smartphones em mãos, utilizamos eles e os nomes das empresas (no arquivo `brands.tsv`) para filtrar anúncios que citam esses modelos ou marcas
 5. Além disso, separam-se os ids dos anúncios selecionados como sendo "smartphone"(utilizando a variável `filteredList`, que possui os anúncios que são relacionados a smartphones) para depois comparar com os ids de todos os anúncios (arquivo de entrada)
 6. Comparamos os IDs dos títulos do arquivo bruto (`data_estag_ds.tsv`) com os IDs da lista que foi filtrada. Os anúncios cujos IDs foram selecionados recebem "SMARTPHONE", e os demais, "NÃO-SMARTPHONE"
