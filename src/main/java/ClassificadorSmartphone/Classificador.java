@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -40,13 +41,11 @@ public class Classificador {
 			//Lista com Marcas e modelos de celulares
 			List<String> phones = fileManager.readFileIntoLines(FileManager.PHONES_DB);
 
-			//Removendo a Marca
+			//Removendo Marcas
 			phones = comp.removeFirstWord(phones);
 
-			//criando lista com os nomes dos modelos de celulares separados para comparacao
-			List<String> search = new ArrayList<String>();
-
 			//filtrando lista para montar um array com todos os modelos de telefones
+			List<String> search = new ArrayList<String>();
 			for(String p : phones) {
 				search.addAll(Arrays.asList(p.split(" ")));
 			}
@@ -58,9 +57,10 @@ public class Classificador {
 			 */
 			search.addAll(Arrays.asList(fileManager.getBrands()));
 			
-			//removendo itens repetidos (ex: remoção da palavra "Galaxy" -> Galaxy S6, Galaxy S7, Galaxy S8)
+			//removendo itens repetidos (ex: palavra "Galaxy" -> Galaxy S6, Galaxy S7, Galaxy S8)
 			search = comp.removeDuplicates(search);
-
+			search = search.stream().sorted().collect(Collectors.toList()); //ordenando para binSearch
+			
 			//Pegando títulos que contém ao menos um dos modelos de celular ou então o nome de uma empresa de smartphone
 			List<String> filteredList = comp.adsContainingTerms(adTitles, search);
 			

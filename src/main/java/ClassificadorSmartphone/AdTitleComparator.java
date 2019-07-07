@@ -12,6 +12,8 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -47,18 +49,18 @@ public class AdTitleComparator {
 	public boolean containsIgnoreCase(String str, String subString) {
 		String strLower = str.toLowerCase();
 		String subStringLower = subString.toLowerCase();
-		
-		System.out.println("Comparando <<" + subStringLower + ">> dentro de " + strLower);
         return strLower.contains(subStringLower);
     }
 	
 	
 	//retorna true somente se o parâmetro "title" possui alguma palavra idêntica a outra em "items"
-	public boolean strContainsItemFromList(String title, List<String> items) {
-		String[] titleWords = title.split(" |\t|,|-");
+	//Passar "items" ordenados para busca binária
+	public boolean strContainsItemFromList(String title, List<String> items) {	
+		String[] titleWords = title.toLowerCase().split(" |\t|,|-|/");
+		items.replaceAll(String::toLowerCase);
 		i = 0;
 		while(i < titleWords.length) {
-			if(items.stream().anyMatch(item -> titleWords[i].toLowerCase().equals(item.toLowerCase()))) {
+			if(Collections.binarySearch(items, titleWords[i]) >= 0) {
 				return true;
 			}
 			i++;
